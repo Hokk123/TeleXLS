@@ -35,7 +35,7 @@ def handle_text(message):
     # Загружаем данные из Excel-таблицы
     orders_df = load_orders()
 
-    # Ищем статус заказа по номеру
+    # Ищем данные по номеру
     status = orders_df.loc[orders_df['номер'] == order_number, 'данные'].values
 
     if len(status) > 0:
