@@ -20,7 +20,7 @@ def load_orders():
 
 @bot.message_handler(commands=['start', 'help'])
 def help(message: telebot.types.Message):
-    text = 'Чтобы начать работу, введите команду боту в следующем формате:имя файла в формате xls'
+    text = 'Чтобы начать работу, введите команду боту в следующем формате:имя файла в формате xlsx'
     bot.reply_to(message, text)
 
 # @bot.message_handler()
