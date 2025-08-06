@@ -30,18 +30,24 @@ def help(message: telebot.types.Message):
 # Обработчик текстовых сообщений
 @bot.message_handler(func=lambda message: True)
 def handle_text(message):
-    order_number = message.text.strip()
+    try:
+        val = int(message.text)
 
-    # Загружаем данные из Excel-таблицы
-    orders_df = load_orders()
+        order_number = message.text.strip()
 
-    # Ищем данные по номеру
-    status = orders_df.loc[orders_df['номер'] == order_number, 'данные'].values
+        # Загружаем данные из Excel-таблицы
+        orders_df = load_orders()
 
-    if len(status) > 0:
-        bot.reply_to(message, f"данные {order_number}: {status[0]}")
-    else:
-        bot.reply_to(message, f"данные с номером {order_number} не найдены.")
+        # Ищем данные по номеру
+        status = orders_df.loc[orders_df['номер'] == order_number, 'данные'].values
+
+        if len(status) > 0:
+            bot.reply_to(message, f"данные {order_number}: {status[0]}")
+        else:
+            bot.reply_to(message, f"данные с номером {order_number} не найдены.")
+            
+    except ValueError:
+        print("That's not an int!")
 
 # Запускаем бота
 bot.polling()
