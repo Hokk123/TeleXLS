@@ -1,9 +1,13 @@
 import telebot
 from config import TOKEN
 import pandas as pd
+from datetime import datetime
 
 bot = telebot.TeleBot(TOKEN)
 
+# Получаем текущий год и месяц
+year_now = datetime.now().year
+month_now = datetime.now().month
 
 # Загружаем данные из Excel-таблицы
 def load_orders():
@@ -42,7 +46,7 @@ def handle_text(message):
         status = orders_df.loc[orders_df['номер'] == order_number, 'данные'].values
 
         if len(status) > 0:
-            bot.reply_to(message, f"данные {order_number}: {status[0]}")
+            bot.reply_to(message, f"{year_now} {month_now} данные {order_number}: {status[0]}")
         else:
             bot.reply_to(message, f"данные с номером {order_number} не найдены.")
             
