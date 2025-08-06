@@ -20,7 +20,7 @@ def load_orders():
 
 @bot.message_handler(commands=['start', 'help'])
 def help(message: telebot.types.Message):
-    text = 'Чтобы начать работу, введите команду боту в следующем формате: номер записи'
+    text = 'Добро пожаловать! Этот бот предназначен для предоставления вам данных по реализации проекта системы связи и телекоммуникаций (ССиТ) ООО «Газпром межрегионгаз» (МРГ): номер записи'
     bot.reply_to(message, text)
 
 # @bot.message_handler()
