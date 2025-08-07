@@ -3,12 +3,16 @@ from telebot import types
 from config import TOKEN
 import pandas as pd
 from datetime import datetime
+import locale
+
 
 bot = telebot.TeleBot(TOKEN)
 
 # Получаем текущий год и месяц
 year_now = datetime.now().year
 month_now = datetime.now().month
+locale.setlocale(locale.LC_TIME, 'ru')
+month = datetime.strptime(str(month_now), "%m").strftime("%B")
 
 # Загружаем данные из Excel-таблицы
 def load_data():
@@ -53,11 +57,10 @@ def handle_text(message):
     elif(message.text == "Планы проекта"):
         # Ищем данные по текущему месяцу
         
-        bot.send_message(message.chat.id, text="Привеет.. Вывод планов в процессе создания!)")
+        bot.send_message(message.chat.id, f"Текущий {data_df.iloc[7].to_string(header=False)}")
         
         
-
 
 # Запускаем бота
-bot.polling()
+bot.polling(none_stop=True)
 
