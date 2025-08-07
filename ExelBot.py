@@ -35,9 +35,6 @@ def start(message):
     markup.add(btn1, btn2)
     bot.send_message(message.chat.id, text="Добро пожаловать! Этот бот предназначен для предоставления вам данных по реализации проекта системы связи и телекоммуникаций (ССиТ) ООО «Газпром межрегионгаз» (МРГ):".format(message.from_user), reply_markup=markup)
 
-# @bot.message_handler()
-# def send_welcome(message):
-#     bot.send_message(message.chat.id, f"Welcome, {message.chat.username}")
 
 # Обработчик текстовых сообщений
 @bot.message_handler(content_types=['text'])
