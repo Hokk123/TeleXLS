@@ -51,14 +51,12 @@ def handle_text(message):
         rows = len(data_df.index) #Количество строк в таблице
         total = data_df.iloc[(rows-1),2]
         if (total == 1):
-            bot.send_message(message.chat.id, f"{year_now} {month_now} На текущий момент работы выполнены на {total} объекте")
+            bot.send_message(message.chat.id, f"На текущий момент работы выполнены на {total} объекте")
         else:
-            bot.send_message(message.chat.id, f"{year_now} {month_now} На текущий момент работы выполнены на {total} объектах")
+            bot.send_message(message.chat.id, f"На текущий момент работы выполнены на {total} объектах")
     elif(message.text == "Планы проекта"):
-        # Ищем данные по текущему месяцу
-        
-        bot.send_message(message.chat.id, f"Текущий {data_df.iloc[7].to_string(header=False)}")
-        
+        # Выводим данные по текущему месяцу
+        bot.send_message(message.chat.id, f"Текущий {data_df.iloc[(month_now-1)].to_string(header=False)}")
         
 
 # Запускаем бота
